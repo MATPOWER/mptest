@@ -1,13 +1,13 @@
 function t_test_fcns(quiet)
 %T_TEST_FCNS  Test T_OK and T_IS and manually check output of failed tests.
 
-%   MATPOWER
+%   MP-Test
 %   Copyright (c) 2015, Power Systems Engineering Research Center (PSERC)
 %   by Ray Zimmerman, PSERC Cornell
 %
-%   This file is part of MATPOWER.
+%   This file is part of MP-Test.
 %   Covered by the 3-clause BSD License (see LICENSE file for details).
-%   See http://www.pserc.cornell.edu/matpower/ for more info.
+%   See https://github.com/MATPOWER/mptest for more info.
 
 if nargin < 1
     quiet = 0;

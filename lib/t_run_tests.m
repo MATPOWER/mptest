@@ -12,13 +12,13 @@ function t_run_tests(test_names, verbose)
 %
 %   See also T_BEGIN, T_END.
 
-%   MATPOWER
+%   MP-Test
 %   Copyright (c) 2004-2016, Power Systems Engineering Research Center (PSERC)
 %   by Ray Zimmerman, PSERC Cornell
 %
-%   This file is part of MATPOWER.
+%   This file is part of MP-Test.
 %   Covered by the 3-clause BSD License (see LICENSE file for details).
-%   See http://www.pserc.cornell.edu/matpower/ for more info.
+%   See https://github.com/MATPOWER/mptest for more info.
 
 if nargin < 2
     verbose = 0;
