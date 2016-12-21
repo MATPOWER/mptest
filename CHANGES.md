@@ -5,8 +5,8 @@ Change history for MP-Test
 Since last release
 ------------------
 
-* 2016-12-21 - Updates for [Travis-CI][1] integration, with option to exit
-  Octave or Matlab if any test fails.
+* 2016-12-21 - Updates for [Travis-CI][1] integration (thanks to Richard
+  Lincoln), with option to exit Octave or Matlab if any test fails.
 
 
 6.0 (2016-12-16)
