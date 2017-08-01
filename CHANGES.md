@@ -5,6 +5,9 @@ Change history for MP-Test
 Since last release
 ------------------
 
+#### 8/1/17
+  - Modified `t_is()` to handle sparse matrix inputs.
+
 #### 12/21/16
   - Updates for [Travis-CI][1] integration, with option to exit Octave
     or Matlab if any test fails.
