@@ -10,7 +10,7 @@ Since last release
 
 #### 12/21/16
   - Updates for [Travis-CI][1] integration, with option to exit Octave
-    or Matlab if any test fails.
+    or MATLAB if any test fails.
     *Thanks to Richard Lincoln for getting us started with Travis-CI.*
 
 
