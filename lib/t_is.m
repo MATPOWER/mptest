@@ -76,7 +76,7 @@ if ~condition && ~t_quiet
     if max_diff > 0
         k = find(~(abs(got_minus_expected(:)) < 10^(-prec)));
         [vv, kk] = max(abs(got_minus_expected(k)));
-        fprintf('    index              got             expected          got - exp\n');
+        fprintf('    index              got             expected      abs(got - exp)\n');
         fprintf('---------------  ----------------  ----------------  ----------------');
         for u = 1:length(k)
             if isscalar(expected)
@@ -93,7 +93,7 @@ if ~condition && ~t_quiet
                 idxstr = sprintf('(%s%d)', idxstr, idx{end});
             end
             fprintf('\n%14s  %16g  %16g  %16g', ...
-                idxstr, full(got(k(u))), full(ex), full(got_minus_expected(k(u))));
+                idxstr, full(got(k(u))), full(ex), full(abs(got_minus_expected(k(u)))));
             if u == kk
                 fprintf('  *');
                 idxstrkk = idxstr;

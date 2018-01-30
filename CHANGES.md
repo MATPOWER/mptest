@@ -5,6 +5,10 @@ Change history for MP-Test
 Since last release
 ------------------
 
+#### 1/30/18
+  - Added `abs()` to output of failed tests for consistency when
+    comparing complex numbers (affects display only, test were correct).
+
 #### 8/1/17
   - Modified `t_is()` to handle sparse matrix inputs.
 
