@@ -2,8 +2,8 @@ Change history for MP-Test
 ==========================
 
 
-Since last release
-------------------
+Version 7.0b1 - *Oct 25, 2016*
+------------------------------
 
 #### 3/7/18
   - Replace `clock()`/`etime()` with `tic()`/`toc()` for timing.
