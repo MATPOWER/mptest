@@ -2,8 +2,12 @@ Change history for MP-Test
 ==========================
 
 
-Version 7.0b1 - *Oct 25, 2016*
+Version 7.0b1 - *Oct 30, 2016*
 ------------------------------
+
+#### 10/30/18
+  - Fix bug in `t_is()` where comparing an integer value with a double
+    value would pass when it should not.
 
 #### 3/7/18
   - Replace `clock()`/`etime()` with `tic()`/`toc()` for timing.
