@@ -6,6 +6,7 @@ Version 7.0b1 - *Oct 30, 2016*
 ------------------------------
 
 #### 10/30/18
+  - Release 7.0b1.
   - Fix bug in `t_is()` where comparing an integer value with a double
     value would pass when it should not.
 
