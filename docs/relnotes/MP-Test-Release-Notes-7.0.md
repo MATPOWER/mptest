@@ -1,7 +1,7 @@
 What's New in MP-Test 7.0
 -------------------------
 
-#### Released Oct 30, 2018
+#### Released Jun 20, 2019
 
 Below is a summary of the changes since version 6.0 of MP-Test. See the
 [`CHANGES.md`][1] file for all the gory details.
