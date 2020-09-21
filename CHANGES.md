@@ -5,6 +5,9 @@ Change history for MP-Test
 Changes since 7.0
 -----------------
 
+#### 9/21/20
+  - Add mptestver() defining explicit version number.
+
 #### 12/6/19
   - Improve handling of complex quantities in `t_is()`. Now displays
     differences in imaginary parts as well when there is a mismatch.
