@@ -3,8 +3,8 @@ MP-Test
 
 MP-Test is a set of functions for implementing unit testing in MATLAB or
 Octave. It was initially developed for [MATPOWER][1], and is used by
-[MATPOWER][1], [MATPOWER Interior Point Solver (MIPS)][2] and
-[MATPOWER Optimal Scheduling Tool (MOST)][3].
+[MATPOWER][1], [MATPOWER Interior Point Solver (MIPS)][2], [MP-Opt-Model][7]
+and [MATPOWER Optimal Scheduling Tool (MOST)][3].
 
 Installation
 ------------
@@ -116,3 +116,4 @@ MP-Test is distributed under the [3-clause BSD license][6].
 [4]: https://github.com/MATPOWER/mptest
 [5]: CONTRIBUTING.md
 [6]: LICENSE
+[7]: https://github.com/MATPOWER/mp-opt-model
