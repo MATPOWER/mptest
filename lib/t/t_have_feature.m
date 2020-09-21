@@ -40,22 +40,22 @@ else
     t_ok(have_feature('matlab'), 'Matlab');
 end
 
-t = '<MPOM>/lib/t/t_have_fcn must not be in path';
+t = '<MPOM>/lib/t/t_have_feature must not be in path';
 t_ok(exist('rithmaticker') ~= 2, t);
 
 %% find path to this test file
 cwd = pwd;
-[p, n, e] = fileparts(which('t_have_fcn'));
+[p, n, e] = fileparts(which('t_have_feature'));
 
 %% initially not available
 t = 'have_feature(''rithmaticker'')';
 t_ok(have_feature('rithmaticker') == 0, [t ' : not available']);
 
 %% switch dir so it is available
-cd(fullfile(p, 't_have_fcn'));
+cd(fullfile(p, 't_have_feature'));
 cwd2 = pwd;
 
-t = '<MPOM>/lib/t/t_have_fcn must be in path';
+t = '<MPOM>/lib/t/t_have_feature must be in path';
 t_ok(exist('rithmaticker') == 2, t);
 
 %% still not available (cached)
