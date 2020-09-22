@@ -2,8 +2,8 @@ function rv = mptestver(varargin)
 %MPTESTVER  Prints or returns MP-Test version info.
 %   V = MPTESTVER returns the current MP-Test version numbers.
 %   V = MPTESTVER('all') returns a struct with the fields Name, Version,
-%   Release and Date (all strings). Calling MPTESTVER without assigning the
-%   return value prints the version and release date of the current
+%   Release and Date (all char arrays). Calling MPTESTVER without assigning
+%   the return value prints the version and release date of the current
 %   installation of MP-Test.
 
 %   MP-Test

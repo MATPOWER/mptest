@@ -91,12 +91,77 @@ Usage
 Documentation
 -------------
 
-The primary source of documentation for MP-Test is the built-in `help`
-command. As with the built-in functions and toolbox routines in MATLAB
-and Octave, you can type `help` followed by the name of a command or
-M-file to get help on that particular function. All of the M-files in
-MP-Test have such documentation and this should be considered the main
-reference for the calling options for each function, namely:: `t_begin`, `t_end`, `t_ok`, `t_is`, `t_skip` and `t_run_tests`.
+The primary sources of documentation for MP-Test are this section of
+this README file and the built-in `help` command. As with the built-in
+functions and toolbox routines in MATLAB and Octave, you can type `help`
+followed by the name of a command or M-file to get help on that
+particular function.
+
+#### Testing Functions
+
+- __t_begin__ -- begin running tests
+
+  ```
+  t_begin(num_of_tests, quiet)
+  ```
+  Initializes the global test counters, setting everything up to execute
+  `num_of_tests` tests using `t_ok` and `t_is`. If `quiet` is true, it
+  will not print anything for the individual tests, only a summary when
+  `t_end` is called.
+
+- __t_end__ -- finish running tests and print statistics
+  ```
+  t_end
+  ```
+  Checks the global counters that were updated by calls to `t_ok`,
+  `t_is` and `t_skip` and prints out a summary of the test results.
+
+- __t_ok__ -- test whether a condition is true
+  ```
+  ok = t_ok(expr, msg)
+  ```
+  Increments the global test count and if the `expr` is true it
+  increments the passed tests count, otherwise increments the failed
+  tests count. Prints `'ok'` or `'not ok'` followed by the `msg`, unless
+  `t_begin` was called with input `quiet` equal true. Intended to be
+  called between calls to `t_begin` and `t_end`.
+
+- __t_is__ -- test if two (scalar, vector, matrix) values are identical,
+  to some tolerance
+  ```
+  t_is(got, expected, prec, msg)
+  ```
+  Increments the global test count and if the maximum difference between
+  corresponding elements of `got` and `expected` is less than
+  10^(-`prec`) then it increments the passed tests count, otherwise
+  increments the failed tests count. Prints `'ok'` or `'not ok'`
+  followed by the `msg`, unless `t_begin` was called with input `quiet`
+  equal true. The input values can be real or complex, and they can be
+  scalar, vector, or 2-d or higher matrices. If `got` is a vector or
+  matrix and `expected` is a scalar or `NaN`, all elements must match
+  the scalar. Intended to be called between calls to `t_begin` and
+  `t_end`.
+
+  Optionally returns a true or false value indicating whether or not the
+  test succeeded. `NaN` values are considered to be equal to each other.
+
+- __t_skip__ -- skip a number of tests
+  ```
+  t_skip(cnt, msg)
+  ```
+  Increments the global test count and skipped tests count. Prints
+  `'skipped tests x..y : '` followed by the `msg`, unless `t_begin` was
+  called with input `quiet` equal true. Intended to be called between
+  calls to `t_begin` and `t_end`.
+
+- __t_run_tests__ -- run a series of tests
+  ```
+  all_ok = t_run_tests(test_names, verbose)
+  ```
+  Runs a set of tests whose names are given in the cell array `test_names`.
+  If the optional parameter `verbose` is true, it prints the details of the
+  individual tests. Optionally returns an `all_ok` flag, equal to 1 if all
+  tests pass (and the number matches the expected number), 0 otherwise.
 
 Contributing
 ------------
