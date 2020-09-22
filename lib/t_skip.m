@@ -1,7 +1,7 @@
 function t_skip(cnt, msg)
 %T_SKIP  Skips a number of tests.
 %   T_SKIP(CNT, MSG) increments the global test count and skipped tests
-%   count. Prints 'skipped tests x..y : ' followed by the MSG, unless
+%   count. Prints 'skipped x..y : ' followed by the MSG, unless
 %   T_BEGIN was called with input QUIET equal true. Intended to be
 %   called between calls to T_BEGIN and T_END.
 %

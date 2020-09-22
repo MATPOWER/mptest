@@ -105,7 +105,7 @@ particular function.
 
 #### Testing Functions
 
-- __t_begin__ -- begin running tests
+- __t_begin__ — begin running tests
 
   ```
   t_begin(num_of_tests, quiet)
@@ -115,14 +115,14 @@ particular function.
   will not print anything for the individual tests, only a summary when
   `t_end` is called.
 
-- __t_end__ -- finish running tests and print statistics
+- __t_end__ — finish running tests and print statistics
   ```
   t_end
   ```
   Checks the global counters that were updated by calls to `t_ok`,
   `t_is` and `t_skip` and prints out a summary of the test results.
 
-- __t_ok__ -- test whether a condition is true
+- __t_ok__ — test whether a condition is true
   ```
   ok = t_ok(expr, msg)
   ```
@@ -132,7 +132,7 @@ particular function.
   `t_begin` was called with input `quiet` equal true. Intended to be
   called between calls to `t_begin` and `t_end`.
 
-- __t_is__ -- test if two (scalar, vector, matrix) values are identical,
+- __t_is__ — test if two (scalar, vector, matrix) values are identical,
   to some tolerance
   ```
   t_is(got, expected, prec, msg)
@@ -151,16 +151,16 @@ particular function.
   Optionally returns a true or false value indicating whether or not the
   test succeeded. `NaN` values are considered to be equal to each other.
 
-- __t_skip__ -- skip a number of tests
+- __t_skip__ — skip a number of tests
   ```
   t_skip(cnt, msg)
   ```
   Increments the global test count and skipped tests count. Prints
-  `'skipped tests x..y : '` followed by the `msg`, unless `t_begin` was
+  `'skipped x..y : '` followed by the `msg`, unless `t_begin` was
   called with input `quiet` equal true. Intended to be called between
   calls to `t_begin` and `t_end`.
 
-- __t_run_tests__ -- run a series of tests
+- __t_run_tests__ — run a series of tests
   ```
   all_ok = t_run_tests(test_names, verbose)
   ```
@@ -171,7 +171,7 @@ particular function.
 
 #### Other Functions
 
-- __have_feature__ -- test for optional functionality, with version information
+- __have_feature__ — test for optional functionality, with version information
   ```
   TorF = have_feature(tag)
   TorF = have_feature(tag, toggle)
@@ -182,16 +182,16 @@ particular function.
   have_feature(tag, 'clear_cache')
   have_feature('all', 'clear_cache')
   ```
-  Returns the availability version and release information for optional
+  Returns the availability, version and release information for optional
   functionality. All information is cached, and the cached values
   returned on subsequent calls. If the functionality exists, an attempt
   is made to determine the release date and version number. The second
   argument defines which value is returned, as follows:
-  - `<none>` -- 1 = optional functionality is available, 0 = not available
-  - `'vstr'` -- version number as a string (e.g. `'3.11.4'`)
-  - `'vnum'` -- version number as numeric value (e.g. 3.011004)
-  - `'date'` -- release date as a string (e.g. `'21-Sep-2020'`)
-  - `'all'` -- struct with fields named `'av'` (for "availability"),
+  - `''`, `'av'` or _\<none\>_ — 1 = optional functionality is available, 0 = not available
+  - `'vstr'` — version number as a string (e.g. `'3.11.4'`)
+  - `'vnum'` — version number as numeric value (e.g. 3.011004)
+  - `'date'` — release date as a string (e.g. `'21-Sep-2020'`)
+  - `'all'` — struct with fields named `'av'` (for "availability"),
      `'vstr'`, `'vnum'` and `'date'`, and values corresponding to the above,
      respectively.
 
@@ -201,9 +201,9 @@ particular function.
   Alternatively, the optional functionality specified by `tag` can be
   toggled _OFF_ or _ON_ by calling `have_feature` with a numeric second
   argument `toggle` with one of the following values:
-  -  0 -- turn _OFF_ the optional functionality
-  -  1 -- turn _ON_ the optional functionality (if available)
-  - -1 -- toggle the _ON_/_OFF_ state of the optional functionality
+  -  0 — turn _OFF_ the optional functionality
+  -  1 — turn _ON_ the optional functionality (if available)
+  - -1 — toggle the _ON_/_OFF_ state of the optional functionality
 
   Finally, passing `'clear_cache'` as the second argument will cause the
   cached information to be cleared for the specified `tag` or, if the
@@ -219,7 +219,7 @@ particular function.
   end
   ```
 
-- __mptestver__ -- prints or returns MP-Test version info
+- __mptestver__ — prints or returns MP-Test version info
   ```
   v = mptestver
   v = mptestver('all')
@@ -232,13 +232,15 @@ particular function.
 
 #### Private Functions
 
-- __have_feature_matlab__ -- feature detection function for MATLAB
+- __have_feature_matlab__ — feature detection function for MATLAB
 
-  Implements `'matlab'` tag for `have_feature()`.
+  Implements `'matlab'` tag for `have_feature()` to detect if code is
+  running under MATLAB.
 
-- __have_feature_octave__ -- feature detection function for GNU Octave
+- __have_feature_octave__ — feature detection function for GNU Octave
 
-  Implements `'octave'` tag for `have_feature()`.
+  Implements `'octave'` tag for `have_feature()` to detect if code is
+  running under GNU Octave.
 
 Contributing
 ------------

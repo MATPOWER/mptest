@@ -76,14 +76,14 @@ persistent h_f_cache;
 
 action = 'D';                   %% detecting functionality (default)
 if nargin > 1
-    if isnumeric(rtype)
+    if isnumeric(rtype) && ~isempty(rtype)
         action = 'T';           %% toggling functionality
         on_off = rtype;
         if on_off < 0                   %% flip the toggle
             TorF = have_feature(tag);
             on_off = ~TorF;
         end
-    else
+    elseif length(rtype) > 4
         switch lower(rtype)
             case 'get_cache'
                 action = 'C';   %% getting cache
@@ -161,6 +161,8 @@ if action ~= 'C' || nargout
                 rv = h_f_cache.(tag).date;
             case 'all'
                 rv = h_f_cache.(tag);
+            case {'', 'av'}
+                rv = h_f_cache.(tag).av;
         end
     end
 end
