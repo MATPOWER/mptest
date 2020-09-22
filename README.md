@@ -4,15 +4,20 @@ MP-Test
 MP-Test is a set of functions for implementing unit testing in MATLAB or
 Octave. It was initially developed for [MATPOWER][1], and is used by
 [MATPOWER][1], [MATPOWER Interior Point Solver (MIPS)][2], [MP-Opt-Model][7]
-and [MATPOWER Optimal Scheduling Tool (MOST)][3].
+and [MATPOWER Optimal Scheduling Tool (MOST)][3]. It also includes a
+function `have_feature()` for detecting support for optional functionality.
 
 Installation
 ------------
 
+**Note to [MATPOWER][1] users:** _MP-Test is included when you install
+[MATPOWER][1]. There is generally no need to install it separately. You
+can skip directly to step 3 to verify._
+
 Installation and use of MP-Test requires familiarity with the basic operation
 of MATLAB or Octave, including setting up your MATLAB path.
 
-1.  Clone the repository or download and extract the zip file of the MIPS
+1.  Clone the repository or download and extract the zip file of the MP-Test
     distribution from the [MP-Test project page][4] to the location of your
     choice. The files in the resulting `mptest` or `mptestXXX` directory,
     where `XXX` depends on the version of MP-Test, should not need to be
@@ -28,9 +33,10 @@ of MATLAB or Octave, including setting up your MATLAB path.
     should resemble the following:
 ```matlab
   >> test_mptest
-  t_test_fcns....ok
-  All tests successful (1 of 1)
-  Elapsed time 0.00 seconds.
+  t_test_fcns.......ok
+  t_have_feature....ok
+  All tests successful (25 of 25)
+  Elapsed time 0.07 seconds.
 ```
 
 Usage
@@ -41,15 +47,15 @@ Usage
 ```matlab
   function mptest_ex1(quiet)
   if nargin < 1
-    quiet = 0;
+      quiet = 0;
   end
   t_begin(4, quiet);
   t_ok(pi > 3, 'size of pi');
-  if exist('my_unimplemented_functionality', 'file')
-    t_ok(1, 'unimplemented_test1');
-    t_ok(1, 'unimplemented_test2');
+  if have_feature('octave')
+      t_ok(1, 'Octave-only test foo');
+      t_ok(1, 'Octave-only test bar');
   else
-    t_skip(2, 'not yet written');
+      t_skip(2, 'foo and bar tests require Octave');
   end
   t_is(2+2, 4, 12, '2+2 still equals 4');
   t_end;
@@ -60,7 +66,7 @@ Usage
   >> mptest_ex1
   1..4
   ok 1 - size of pi
-  skipped tests 2..3 : not yet written
+  skipped 2..3 - foo and bar tests require Octave
   ok 4 - 2+2 still equals 4
   All tests successful (2 passed, 2 skipped of 4)
   Elapsed time 0.00 seconds.
@@ -162,6 +168,77 @@ particular function.
   If the optional parameter `verbose` is true, it prints the details of the
   individual tests. Optionally returns an `all_ok` flag, equal to 1 if all
   tests pass (and the number matches the expected number), 0 otherwise.
+
+#### Other Functions
+
+- __have_feature__ -- test for optional functionality, with version information
+  ```
+  TorF = have_feature(tag)
+  TorF = have_feature(tag, toggle)
+  ver_str = have_feature(tag, 'vstr')
+  ver_num = have_feature(tag, 'vnum')
+  date    = have_feature(tag, 'date')
+  info    = have_feature(tag, 'all')
+  have_feature(tag, 'clear_cache')
+  have_feature('all', 'clear_cache')
+  ```
+  Returns the availability version and release information for optional
+  functionality. All information is cached, and the cached values
+  returned on subsequent calls. If the functionality exists, an attempt
+  is made to determine the release date and version number. The second
+  argument defines which value is returned, as follows:
+  - `<none>` -- 1 = optional functionality is available, 0 = not available
+  - `'vstr'` -- version number as a string (e.g. `'3.11.4'`)
+  - `'vnum'` -- version number as numeric value (e.g. 3.011004)
+  - `'date'` -- release date as a string (e.g. `'21-Sep-2020'`)
+  - `'all'` -- struct with fields named `'av'` (for "availability"),
+     `'vstr'`, `'vnum'` and `'date'`, and values corresponding to the above,
+     respectively.
+
+  For functionality that is not available, all calls with a string-valued
+  second argument will return an empty value.
+
+  Alternatively, the optional functionality specified by `tag` can be
+  toggled _OFF_ or _ON_ by calling `have_feature` with a numeric second
+  argument `toggle` with one of the following values:
+  -  0 -- turn _OFF_ the optional functionality
+  -  1 -- turn _ON_ the optional functionality (if available)
+  - -1 -- toggle the _ON_/_OFF_ state of the optional functionality
+
+  Finally, passing `'clear_cache'` as the second argument will cause the
+  cached information to be cleared for the specified `tag` or, if the
+  first argument is `'all'`, for all optional functionality. When
+  calling with `'clear_cache'` no return value is defined.
+
+  Examples:
+  ```
+  if have_feature('matlab')
+      disp(['Running MATLAB version ', have_feature('matlab', 'vstr')])
+  else
+      disp(['Running Octave version ', have_feature('octave', 'vstr')])
+  end
+  ```
+
+- __mptestver__ -- prints or returns MP-Test version info
+  ```
+  v = mptestver
+  v = mptestver('all')
+  ```
+  Returns the current MP-Test version numbers. If called with an argument,
+  returns a struct with the fields `Name`, `Version`, `Release` and `Date`
+  (all char arrays). Calling `mptestver` without assigning the return value
+  prints the version and release date of the current installation of MP-Test.
+
+
+#### Private Functions
+
+- __have_feature_matlab__ -- feature detection function for MATLAB
+
+  Implements `'matlab'` tag for `have_feature()`.
+
+- __have_feature_octave__ -- feature detection function for GNU Octave
+
+  Implements `'octave'` tag for `have_feature()`.
 
 Contributing
 ------------

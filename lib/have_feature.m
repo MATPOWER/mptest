@@ -17,7 +17,7 @@ function rv = have_feature(tag, rtype)
 %       <none>      1 = optional functionality is available, 0 = not available
 %       'vstr'      version number as a string (e.g. '3.11.4')
 %       'vnum'      version number as numeric value (e.g. 3.011004)
-%       'date'      release date as a string (e.g. '20-Jan-2015')
+%       'date'      release date as a string (e.g. '21-Sep-2020')
 %       'all'       struct with fields named 'av' (for 'availability'), 'vstr',
 %                   'vnum' and 'date', and values corresponding to the above,
 %                   respectively.
@@ -37,83 +37,40 @@ function rv = have_feature(tag, rtype)
 %   argument is 'all', for all optional functionality. When calling with
 %   'clear_cache' no return value is defined.
 %
-%   Possible values for input TAG and their meanings:
-%       bpmpd       - BP, BPMPD interior point LP/QP solver
-%       clp         - CLP, LP/QP solver(https://github.com/coin-or/Clp)
-%         opti_clp  - version of CLP distributed with OPTI Toolbox
-%                       (https://www.inverseproblem.co.nz/OPTI/)
-%       cplex       - CPLEX, IBM ILOG CPLEX Optimizer
-%       fmincon     - FMINCON, solver from Optimization Toolbox
-%         fmincon_ipm - FMINCON with Interior Point solver, from Opt Tbx 4.x+
-%       fsolve      - FSOLVE, nonlinear equation solver from Opt Toolbox
-%       glpk        - GLPK, GNU Linear Programming Kit
-%       gurobi      - GUROBI, Gurobi solver (https://www.gurobi.com/)
-%       intlinprog  - INTLINPROG, MILP solver from Optimization
-%                     Toolbox 7.0 (R2014a)+
-%       ipopt       - IPOPT, NLP solver
-%                       (https://github.com/coin-or/Ipopt)
-%       knitro      - Artelys Knitro, NLP solver
-%                     (https://www.artelys.com/solvers/knitro/)
-%         knitromatlab - Artelys Knitro, version 9.0.0+
-%         ktrlink      - KNITRO, version < 9.0.0 (requires Opt Tbx)
-%       linprog     - LINPROG, LP solver from Optimization Toolbox
-%         linprog_ds - LINPROG with dual-simplex solver
-%                       from Optimization Toolbox 7.1 (R2014b) +
-%       matlab      - code is running under MATLAB, as opposed to Octave
-%       mosek       - MOSEK, LP/QP solver (https://www.mosek.com/)
-%       octave      - code is running under GNU Octave, as opposed to MATLAB
-%       optim       - Optimization Toolbox
-%       optimoptions - OPTIMOPTIONS, option setting funciton for Optim Tbx 6.3+
-%       osqp        - OSQP (Operator Splitting QP) solver (https://osqp.org)
-%       pardiso     - PARDISO, Parallel Sparse Direct & Iterative Linear Solver
-%                       (https://pardiso-project.org)
-%       quadprog    - QUADPROG, QP solver from Optimization Toolbox 2.x +
-%         quadprog_ls - QUADPROG with large-scale interior point convex solver
-%                       from Optimization Toolbox 6.x +
-%       sdpt3       - SDPT3 SDP solver (https://github.com/sqlp/sdpt3)
-%       sedumi      - SeDuMi SDP solver (http://sedumi.ie.lehigh.edu)
-%       yalmip      - YALMIP SDP modeling platform (https://yalmip.github.io)
+%   For each valid value of TAG, there is a corresponding feature detection
+%   function named HAVE_FEATURE_<TAG>, where <TAG> is the TAG value for the
+%   feature in question. This makes HAVE_FEATURE modular and extensible.
+%   Each feature detection function takes no input values, but returns
+%   three outputs
+%       TORF - 1 = feature is available, 0 = feature is not available
+%       VSTR - version number as a string (e.g. '3.11.4')
+%       RDATE - release date as a string (e.g. '21-Sep-2020')
 %
-%     Functionality related to MATPOWER
-%       e4st        - E4ST (https://e4st.com/)
-%       minopf      - MINOPF, MINOPF, MINOS-based OPF solver
-%       most        - MOST, MATPOWER Optimal Scheduling Tool
-%       pdipmopf    - PDIPMOPF, primal-dual interior point method OPF solver
-%       scpdipmopf  - SCPDIPMOPF, step-controlled PDIPM OPF solver
-%       sdp_pf      - SDP_PF applications of semi-definite programming
-%                     relaxation of power flow equations
-%       smartmarket - RUNMARKET and friends, for running an energy auction
-%       syngrid     - SynGrid, Synthetic Grid Creation for MATPOWER
-%       tralmopf    - TRALMOPF, trust region based augmented Langrangian
-%                     OPF solver
+%   TAG values for HAVE_FEATURE detection functions included in MP-Test:
+%       matlab      - code is running under MATLAB, as opposed to Octave
+%       octave      - code is running under GNU Octave, as opposed to MATLAB
 %
 %   Examples:
-%       if have_feature('minopf')
-%           results = runopf(mpc, mpoption('opf.ac.solver', 'MINOPF'));
+%       if have_feature('matlab')
+%           disp(['Running MATLAB version ', have_feature('matlab', 'vstr')])
+%       else
+%           disp(['Running Octave version ', have_feature('octave', 'vstr')])
 %       end
-
-%   Private tags for internal use only:
-%       catchme         - support for 'catch me' syntax in try/catch constructs
-%       evalc           - support for evalc() function
-%       ipopt_auxdata   - support for ipopt_auxdata(), required by 3.11 and later
-%       lu_vec          - support for lu(..., 'vector') syntax
-%       pardiso_legacy  - PARDISO v5, individual MEX files for factor, solve, etc
-%       pardiso_object  - PARDISO v6 and later, object interface
-%       regexp_split    - support for 'split' argument to regexp()
-%       rithmaticker    - used for testing HAVE_FEATURE
 %
+%   See also HAVE_FEATURE_MATLAB, HAVE_FEATURE_OCTAVE
+
 %   The following calling syntaxes are also implemented to set and get the
 %   entire cache struct and are used during testing only.
 %       CACHE = HAVE_FEATURE('all', 'get_cache')
 %       HAVE_FEATURE(CACHE, 'set_cache')
 
-%   MP-Opt-Model
+%   MP-Test
 %   Copyright (c) 2004-2020, Power Systems Engineering Research Center (PSERC)
 %   by Ray Zimmerman, PSERC Cornell
 %
-%   This file is part of MP-Opt-Model.
+%   This file is part of MP-Test.
 %   Covered by the 3-clause BSD License (see LICENSE file for details).
-%   See https://github.com/MATPOWER/mp-opt-model for more info.
+%   See https://github.com/MATPOWER/mptest for more info.
 
 persistent h_f_cache;
 

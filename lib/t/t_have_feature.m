@@ -1,13 +1,13 @@
 function t_have_feature(quiet)
 %T_HAVE_FEATURE  Tests for HAVE_FEATURE.
 
-%   MP-Opt-Model
-%   Copyright (c) 2019-2020, Power Systems Engineering Research Center (PSERC)
+%   MP-Test
+%   Copyright (c) 2004-2020, Power Systems Engineering Research Center (PSERC)
 %   by Ray Zimmerman, PSERC Cornell
 %
-%   This file is part of MP-Opt-Model.
+%   This file is part of MP-Test.
 %   Covered by the 3-clause BSD License (see LICENSE file for details).
-%   See https://github.com/MATPOWER/mp-opt-model for more info.
+%   See https://github.com/MATPOWER/mptest for more info.
 
 if nargin < 1
     quiet = 0;

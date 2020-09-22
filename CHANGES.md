@@ -5,6 +5,13 @@ Change history for MP-Test
 Changes since 7.0
 -----------------
 
+#### 9/22/20
+  - Add `have_feature()`, moved from [MP-Opt-Model][2], as a modular,
+    extensible alternative to `have_fcn()`, originally from [MATPOWER][3],
+    where the detection of a feature named `<tag>` is implemented by the
+    function `have_feature_<tag>()`. Includes feature detection functions
+    for `matlab` and `octave`.
+
 #### 9/21/20
   - Add mptestver() defining explicit version number.
 
@@ -205,3 +212,5 @@ Version 3.0b1 - *Aug 25, 2004*
 
 ----
 [1]: https://travis-ci.org
+[2]: https://github.com/MATPOWER/mp-opt-model
+[3]: https://github.com/MATPOWER/matpower
