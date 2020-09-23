@@ -36,7 +36,7 @@ of MATLAB or Octave, including setting up your MATLAB path.
   t_test_fcns.......ok
   t_have_feature....ok
   All tests successful (25 of 25)
-  Elapsed time 0.07 seconds.
+  Elapsed time 0.06 seconds.
 ```
 
 Usage
