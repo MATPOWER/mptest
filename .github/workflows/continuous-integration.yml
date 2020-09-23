@@ -38,4 +38,6 @@ jobs:
     - name: Set MPTEST_PATH
       run: echo "::set-env name=MPTEST_PATH::${GITHUB_WORKSPACE}/lib:${GITHUB_WORKSPACE}/lib/t"
     - name: Test MP-Test
-      run: octave-cli --no-gui -p $MPTEST_PATH --eval "test_mptest(0,1)"
+      run: |
+        octave-cli --no-gui -p $MPTEST_PATH --eval mptestver
+        octave-cli --no-gui -p $MPTEST_PATH --eval "test_mptest(0,1)"
