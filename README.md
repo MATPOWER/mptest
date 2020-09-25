@@ -5,7 +5,7 @@ MP-Test is a set of functions for implementing unit testing in MATLAB or
 Octave. It was initially developed for [MATPOWER][1], and is used by
 [MATPOWER][1], [MATPOWER Interior Point Solver (MIPS)][2], [MP-Opt-Model][7]
 and [MATPOWER Optimal Scheduling Tool (MOST)][3]. It also includes a
-function `have_feature()` for detecting support for optional functionality.
+function `have_feature` for detecting support for optional functionality.
 
 Installation
 ------------
@@ -196,21 +196,24 @@ particular function.
      respectively.
 
   For functionality that is not available, all calls with a string-valued
-  second argument will return an empty value.
+  second argument (except `''` or `'av'`) will return an empty value.
 
-  Alternatively, the optional functionality specified by `tag` can be
-  toggled _OFF_ or _ON_ by calling `have_feature` with a numeric second
-  argument `toggle` with one of the following values:
-  -  0 — turn _OFF_ the optional functionality
-  -  1 — turn _ON_ the optional functionality (if available)
-  - -1 — toggle the _ON_/_OFF_ state of the optional functionality
+  Alternatively, the availability status of the optional functionality
+  specified by `tag` can be toggled _OFF_ or _ON_ by calling `have_feature`
+  with a numeric second argument `toggle` with one of the following values:
+  -  0 — turn _OFF_ availability of the optional functionality
+  -  1 — turn _ON_ availability of the optional functionality (if available)
+  - -1 — toggle the _ON_/_OFF_ availability state of the optional functionality
+
+  Note that this affects _only_ the availability status returned by
+  `have_feature` and nothing else.
 
   Finally, passing `'clear_cache'` as the second argument will cause the
   cached information to be cleared for the specified `tag` or, if the
   first argument is `'all'`, for all optional functionality. When
   calling with `'clear_cache'` no return value is defined.
 
-  Examples:
+  _Example:_
   ```
   if have_feature('matlab')
       disp(['Running MATLAB version ', have_feature('matlab', 'vstr')])
@@ -232,15 +235,19 @@ particular function.
 
 #### Private Functions
 
+The following are private functions that implement detection of specific
+optional functionality. They are not intended to be called directly, but
+rather are used to extend the capabilities of `have_feature` (see above).
+
 - __have_feature_matlab__ — feature detection function for MATLAB
 
-  Implements `'matlab'` tag for `have_feature()` to detect if code is
-  running under MATLAB.
+  This function implements the `'matlab'` tag for `have_feature` to
+  detect if the code is running under MATLAB.
 
 - __have_feature_octave__ — feature detection function for GNU Octave
 
-  Implements `'octave'` tag for `have_feature()` to detect if code is
-  running under GNU Octave.
+  This function implements the `'octave'` tag for `have_feature` to
+  detect if the code is running under GNU Octave.
 
 Contributing
 ------------
