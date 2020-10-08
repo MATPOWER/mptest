@@ -2,7 +2,7 @@ function [TorF, vstr, rdate] = have_feature_octave()
 %HAVE_FEATURE_OCTAVE  Detect availability/version info for Octave
 %
 %   Feature detection function implementing 'octave' tag for HAVE_FEATURE
-%   to detect if code is running under GNU Octave.
+%   to detect whether code is running under GNU Octave.
 %
 %   See also HAVE_FEATURE.
 

@@ -242,12 +242,12 @@ rather are used to extend the capabilities of `have_feature` (see above).
 - __have_feature_matlab__ — feature detection function for MATLAB
 
   This function implements the `'matlab'` tag for `have_feature` to
-  detect if the code is running under MATLAB.
+  detect whether the code is running under MATLAB.
 
 - __have_feature_octave__ — feature detection function for GNU Octave
 
   This function implements the `'octave'` tag for `have_feature` to
-  detect if the code is running under GNU Octave.
+  detect whether the code is running under GNU Octave.
 
 Contributing
 ------------

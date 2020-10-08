@@ -2,7 +2,7 @@ function [TorF, vstr, rdate] = have_feature_matlab()
 %HAVE_FEATURE_MATLAB  Detect availability/version info for MATLAB
 %
 %   Feature detection function implementing 'matlab' tag for HAVE_FEATURE
-%   to detect if code is running under MATLAB.
+%   to detect whether code is running under MATLAB.
 %
 %   See also HAVE_FEATURE.
 
