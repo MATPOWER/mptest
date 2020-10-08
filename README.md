@@ -260,6 +260,19 @@ License
 
 MP-Test is distributed under the [3-clause BSD license][6].
 
+Acknowledgments
+---------------
+
+This material is based upon work supported in part by the Consortium for
+Electric Reliability Technology Solutions (CERTS) and the Office of
+Electricity Delivery and Energy Reliability, Transmission Reliability
+Program of the U.S. Department of Energy under the National Energy
+Technology Laboratory Cooperative Agreement No. DE-FC26-09NT43321 and by
+the National Science Foundation under Grant Nos. 0532744, 1642341 and
+1931421. Any opinions, findings, and conclusions or recommendations
+expressed in this material are those of the author(s) and do not
+necessarily reflect the views of the funding agencies.
+
 ----
 [1]: https://github.com/MATPOWER/matpower
 [2]: https://github.com/MATPOWER/mips
