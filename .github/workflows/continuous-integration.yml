@@ -29,11 +29,13 @@ jobs:
       run: |
         sudo apt-get install -y -qq liboctave-dev octave
         octave-cli --no-gui --eval ver
+        echo "OCTAVE_VER=`octave-cli --no-gui --eval "fprintf('%s', ver('octave').Version)"`" >> $GITHUB_ENV
     - name: Install GNU Octave (Mac)
       if: startsWith(matrix.os, 'macos')
       run: |
         brew install octave
         octave-cli --no-gui --eval ver
+        echo "OCTAVE_VER=`octave-cli --no-gui --eval "fprintf('%s', ver('octave').Version)"`" >> $GITHUB_ENV
     - name: Set MPTEST_PATH
       run: echo "MPTEST_PATH=${GITHUB_WORKSPACE}/lib:${GITHUB_WORKSPACE}/lib/t" >> $GITHUB_ENV
     - name: Test MP-Test
