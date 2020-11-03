@@ -11,28 +11,34 @@ jobs:
 
     runs-on: ${{ matrix.os }}
 
-    steps: 
-    - uses: actions/checkout@v1
+    steps:
+    - uses: actions/checkout@v2
+
     - name: Initialize Package Manager (Linux)
       if: startsWith(matrix.os, 'ubuntu')
       run: sudo apt-get update -qq
+
     - name: Initialize Package Manager (Mac)
       if: startsWith(matrix.os, 'macos')
       run: brew update
+
     - name: Install GNU Octave (Linux)
       if: startsWith(matrix.os, 'ubuntu')
       run: |
         sudo apt-get install -y -qq liboctave-dev octave
         octave-cli --no-gui --eval ver
         echo "OCTAVE_VER=`octave-cli --no-gui --eval "fprintf('%s', ver('octave').Version)"`" >> $GITHUB_ENV
+
     - name: Install GNU Octave (Mac)
       if: startsWith(matrix.os, 'macos')
       run: |
         brew install octave
         octave-cli --no-gui --eval ver
         echo "OCTAVE_VER=`octave-cli --no-gui --eval "fprintf('%s', ver('octave').Version)"`" >> $GITHUB_ENV
+
     - name: Set MPTEST_PATH
       run: echo "MPTEST_PATH=${GITHUB_WORKSPACE}/lib:${GITHUB_WORKSPACE}/lib/t" >> $GITHUB_ENV
+
     - name: Test MP-Test
       run: |
         octave-cli --no-gui -p $MPTEST_PATH --eval mptestver
