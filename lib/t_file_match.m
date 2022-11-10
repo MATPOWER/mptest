@@ -67,6 +67,9 @@ if got_exists
     got = fileread(got_fname);
     expected = fileread(exp_fname);
 
+    %% ignore line endings by replacing Win EOL with Unix EOL chars
+    reps = {{char([13 10]), char(10), 0, 1}, reps{:}};
+
     %% check if contents match
     TorF = t_str_match(got, expected, msg, reps);
     
