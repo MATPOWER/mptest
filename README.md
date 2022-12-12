@@ -171,7 +171,7 @@ particular function.
   and false). The replacement applies to `got` only, unless `both` is
   present and true, in which case it also applies to `expected`.
 
-- __t_files_match__ — test if the contents of two text files match
+- __t_file_match__ — test if the contents of two text files match
   ```
   ok = t_file_match(got_fname, exp_fname, msg)
   ok = t_file_match(got_fname, exp_fname, msg, reps)
