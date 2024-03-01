@@ -1,9 +1,13 @@
+.. _sec_mptest_reference:
+
 Reference
 =========
 
 
-Test Functions
---------------
+Testing Functions
+-----------------
+
+Use these functions in implementing your own tests.
 
 .. toctree::
 
@@ -20,19 +24,35 @@ Test Functions
 Other Functions
 ---------------
 
+Use these functions to test for availability and version information for
+optional functionality and to check the version of the installed |MPTEST|.
+
 .. toctree::
 
    functions/have_feature
-   functions/have_feature_matlab
-   functions/have_feature_octave
    functions/mptestver
 
 
-Testing MP-Test
----------------
+Tests of MP-Test
+----------------
+
+These functions test that |MPTEST| is installed and functioning as expected.
 
 .. toctree::
 
    functions/test_mptest
    functions/t_have_feature
    functions/t_test_fcns
+
+
+Private Functions
+-----------------
+
+The following are private functions that implement detection of specific
+optional functionality. They are not intended to be called directly, but
+rather are used to extend the capabilities of :func:`have_feature` *(see above)*.
+
+.. toctree::
+
+   functions/have_feature_matlab
+   functions/have_feature_octave
