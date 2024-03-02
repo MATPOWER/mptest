@@ -18,13 +18,14 @@ import re
 
 
 # -- Project information -----------------------------------------------------
+# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'MP-Test'
 copyright = '1996-2024, Power Systems Engineering Research Center (PSERC)'
 author = 'Ray D. Zimmerman'
 
 # The full version, including alpha/beta/rc tags
-release = '7.1+'
+release = '8.0b1+'
 
 
 # -- General configuration ---------------------------------------------------

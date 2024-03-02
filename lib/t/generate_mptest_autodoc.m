@@ -2,7 +2,7 @@ function generate_mptest_autodoc(install_dir)
 % generate_mptest_autodoc - Generate the stubs and symlinks for Ref Manual.
 % ::
 %
-%   generate_matpower_autodoc(install_dir)
+%   generate_mptest_autodoc(install_dir)
 %
 % Inputs:
 %   install_dir (char array) : path to the install directory for the package
@@ -16,9 +16,9 @@ function generate_mptest_autodoc(install_dir)
 %   Copyright (c) 2023-2024, Power Systems Engineering Research Center (PSERC)
 %   by Ray Zimmerman, PSERC Cornell
 %
-%   This file is part of MATPOWER.
+%   This file is part of MP-Test.
 %   Covered by the 3-clause BSD License (see LICENSE file for details).
-%   See https://matpower.org for more info.
+%   See https://github.com/MATPOWER/mptest for more info.
 
 if nargin < 1
     matpower_dir = '~/dev/projects/mptest/';
@@ -51,6 +51,7 @@ lib_t_fcns = {
 in = struct(...
     'function', struct(...
         'destdir', 'functions', ...
+        'gh_base_url', 'https://github.com/MATPOWER/mptest/blob/master', ...
         'list', struct(...
             'mod', {'mptest', 'mptest'}, ...
             'src_path', {'lib', 'lib/t'}, ...

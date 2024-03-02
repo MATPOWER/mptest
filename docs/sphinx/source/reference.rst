@@ -33,8 +33,8 @@ optional functionality and to check the version of the installed |MPTEST|.
    functions/mptestver
 
 
-Tests of MP-Test
-----------------
+Tests of |MPTEST|
+-----------------
 
 These functions test that |MPTEST| is installed and functioning as expected.
 
