@@ -25,7 +25,7 @@ Other Functions
 ---------------
 
 Use these functions to test for availability and version information for
-optional functionality and to check the version of the installed |MPTEST|.
+optional functionality and to check the version of the installed MP-Test.
 
 .. toctree::
 
@@ -33,10 +33,10 @@ optional functionality and to check the version of the installed |MPTEST|.
    functions/mptestver
 
 
-Tests of |MPTEST|
------------------
+Tests of MP-Test
+----------------
 
-These functions test that |MPTEST| is installed and functioning as expected.
+These functions test that MP-Test is installed and functioning as expected.
 
 .. toctree::
 

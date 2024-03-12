@@ -1,5 +1,5 @@
 function rv = mptestver(varargin)
-%mptestver - Prints or returns MP-Test version info.
+%mptestver - Prints or returns installed MP-Test version info.
 % ::
 %
 %   mptestver

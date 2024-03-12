@@ -3,6 +3,7 @@ function t_have_feature(quiet)
 % ::
 %
 %   t_have_feature
+%   t_have_feature(quiet)
 
 %   MP-Test
 %   Copyright (c) 2004-2024, Power Systems Engineering Research Center (PSERC)

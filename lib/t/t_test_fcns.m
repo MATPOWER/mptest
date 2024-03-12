@@ -3,6 +3,7 @@ function t_test_fcns(quiet)
 % ::
 %
 %   t_test_fcns
+%   t_test_fcns(quiet)
 %
 % Test t_ok, t_is, t_str_match, t_file_match and manually check output of
 % failed tests.

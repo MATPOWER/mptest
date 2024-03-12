@@ -1,11 +1,11 @@
-######################
-|MPTEST| User's Manual
-######################
+#####################
+MP-Test User's Manual
+#####################
 
 ..
     .. note::
     
-       The new web-based version of the |MPTEST| User's Manual is not yet available. Please, continue to use the |MPTESTman| on GitHub for now.
+       The new web-based version of the MP-Test User's Manual is not yet available. Please, continue to use the |MPTESTman| on GitHub for now.
 
 |MPTEST>| is a set of functions for implementing unit testing in |MATLAB>| or
 |Octave>|. It was initially developed for |MATPOWER>|, and is used by
@@ -23,11 +23,11 @@ can skip directly to step 3 to verify.*
 Installation and use of |MPTEST>| requires familiarity with the basic operation
 of MATLAB or Octave, including setting up your MATLAB/Octave path.
 
-1.  Clone the repository or download and extract the zip file of the |MPTEST|
+1.  Clone the repository or download and extract the zip file of the MP-Test
     distribution from the |MPTEST>| `project page
     <https://github.com/MATPOWER/mptest>`_ to the location of your
     choice. The files in the resulting ``mptest`` or ``mptestXXX`` directory,
-    where ``XXX`` depends on the version of |MPTEST|, should not need to be
+    where ``XXX`` depends on the version of MP-Test, should not need to be
     modified, so it is recommended that they be kept separate from your
     own code. We will use :samp:`{<MPTEST>}` to denote the path to this
     directory.
@@ -38,7 +38,7 @@ of MATLAB or Octave, including setting up your MATLAB/Octave path.
     - :samp:`{<MPTEST>}/lib/t`
 
 3.  At the |MATLAB|/Octave prompt, type ``test_mptest`` to run the test suite
-    and verify that |MPTEST| is properly installed and functioning. The result
+    and verify that MP-Test is properly installed and functioning. The result
     should resemble the following::
 
         >> test_mptest
@@ -110,7 +110,7 @@ Run all of your tests at once. The output may look something like:
 Documentation
 =============
 
-The primary sources of documentation for |MPTEST| are this User's Manual, especially the :ref:`sec_mptest_reference` section, and the built-in ``help`` command. As with the built-in functions and toolbox routines in |MATLAB>| and |Octave>|, you can type ``help`` followed by the name of a command or M-file to get help on that particular function.
+The primary sources of documentation for MP-Test are this User's Manual, especially the :ref:`sec_mptest_reference` section, and the built-in ``help`` command. As with the built-in functions and toolbox routines in |MATLAB>| and |Octave>|, you can type ``help`` followed by the name of a command or M-file to get help on that particular function.
 
 .. toctree::
 
@@ -125,7 +125,7 @@ Please see our `contributing guidelines <https://github.com/MATPOWER/mptest/blob
 License
 =======
 
-|MPTEST| is distributed under the `3-clause BSD license <https://github.com/MATPOWER/mptest/blob/master/LICENSE>`_.
+MP-Test is distributed under the `3-clause BSD license <https://github.com/MATPOWER/mptest/blob/master/LICENSE>`_.
 
 Acknowledgments
 ===============
