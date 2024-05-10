@@ -13,7 +13,7 @@ Pre-release
 - Update version number and date in:
   - `mptestver.m`
   - `docs/sphinx/source/conf.py`.
-- Pull in latest `mp-docs_shared` and build and check Sphinx docs.
+- Pull in latest `mp-docs-shared` and build and check Sphinx docs.
 - Update output in `README.md`, as necessary, of:
   - `test_mptest`
   - `mptest_ex1`
