@@ -7,6 +7,8 @@ Pre-release
 - Check [MP-Test issue tracker](https://github.com/MATPOWER/mptest/issues)
   for to do items.
 - Create & checkout new `prep-for-release` branch from latest `master`.
+- Release notes:
+  - Create `docs/relnotes/MP-Test-Release-Notes-#.#.md` document
 - Update date in Copyright line in:
   - `LICENSE`
   - `docs/sphinx/source/conf.py`.
@@ -27,7 +29,7 @@ Pre-release
 Release
 -------
 - Merge latest `prep-for-release` into `master`.
-- Tag with version number, e.g. `7.1`.
+- Tag with version number, e.g. `8.0`.
 - Push `master` to GitHub.
 - Publish new release on GitHub: https://github.com/MATPOWER/mptest/releases/new
 
