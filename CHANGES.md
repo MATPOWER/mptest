@@ -2,6 +2,13 @@ Change history for MP-Test
 ==========================
 
 
+Since version 8.0
+-----------------
+
+#### 3/21/25
+  - Enhance `t_is()` to handle Inf values appropriately.
+
+
 Version 8.0 - *May 10, 2024*
 ----------------------------
 
