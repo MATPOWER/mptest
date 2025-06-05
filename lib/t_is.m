@@ -15,7 +15,7 @@ function ok = t_is(got, expected, prec, msg)
 %   msg (char array) : message to display for this test
 %
 % Output:
-%   ok (boolean) : *(optional)* true if test passed, false if failed
+%   ok (logical) : *(optional)* true if test passed, false if failed
 %
 % Increments the global test count and, if the test passes, then it
 % increments the passed tests count, otherwise  increments the failed
