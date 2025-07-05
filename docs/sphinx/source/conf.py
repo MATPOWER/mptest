@@ -22,7 +22,7 @@ copyright = '1996-2025, Power Systems Engineering Research Center (PSERC)'
 author = 'Ray D. Zimmerman'
 
 # The full version, including alpha/beta/rc tags
-release = '8.0'
+release = '8.1'
 
 
 # -- General configuration ---------------------------------------------------
