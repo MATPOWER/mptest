@@ -14,7 +14,7 @@ function rv = mptestver(varargin)
 % release date of the current installation of MP-Test.
 
 %   MP-Test
-%   Copyright (c) 2010-2025, Power Systems Engineering Research Center (PSERC)
+%   Copyright (c) 2010-2026, Power Systems Engineering Research Center (PSERC)
 %   by Ray Zimmerman, PSERC Cornell
 %
 %   This file is part of MP-Test.
@@ -22,9 +22,9 @@ function rv = mptestver(varargin)
 %   See https://github.com/MATPOWER/mptest for more info.
 
 v = struct( 'Name',     'MP-Test', ... 
-            'Version',  '8.1', ...
+            'Version',  '8.1+', ...
             'Release',  '', ...
-            'Date',     '05-Jul-2025' );
+            'Date',     '15-Jun-2026' );
 if nargout > 0
     if nargin > 0
         rv = v;

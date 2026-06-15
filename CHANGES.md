@@ -2,6 +2,14 @@ Change history for MP-Test
 ==========================
 
 
+since 8.1
+---------
+
+#### 6/15/26
+  - Limit `t_is()` display to top 10 toleration violations if there are
+    more than 15 elements that do not meet the desired tolerance.
+
+
 Version 8.1 - *July 5, 2024*
 ----------------------------
 
