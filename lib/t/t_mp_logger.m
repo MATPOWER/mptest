@@ -17,7 +17,7 @@ if nargin < 1
     quiet = 0;
 end
 
-n_tests = 14;
+n_tests = 20;
 
 t_begin(n_tests, quiet);
 
@@ -39,6 +39,8 @@ redir_printf_fname = fullfile(p, 't_mp_logger', 'redir-printf.txt');
 
 %% no redirection
 t = 'no redirection : ';
+fname_got = mp.logger.manager('path');
+t_ok(isempty(fname_got), [t 'log file path (empty)']);
 c = evalc('mp_disp(sprintf(''This is %d\nlines of\ntext (%s).\n'', 3, ''I think'')); mp_disp(exp(1));');
 if have_feature('octave')
     if have_feature('octave', 'vnum') < 6
@@ -64,7 +66,9 @@ fname = sprintf('redir-disp-%d.txt', fix(rand*1e8));
 mp.logger.manager('init', fname);
 mp_disp(exp(1));
 c = evalc('mp_disp(sprintf(''This is %d\nlines of\ntext (%s).\n'', 3, ''I think''));');
+fname_got = mp.logger.manager('path');
 mp.logger.manager('clear', fname);
+t_str_match(fname_got, fname, [t 'log file path']);
 t_file_match(fname, redir_disp_fname, [t 'mp_disp - file w/expected content'], {}, true);
 t_ok(isempty(c), [t 'mp_disp - no console output']);
 t_ok(isempty(mp.logger.manager('get')), [t 'mp.logger.manage(''clear'')']);
@@ -73,7 +77,9 @@ fname = sprintf('redir-printf-%d.txt', fix(rand*1e8));
 mp.logger.manager('init', fname);
 mp_printf('This is %d\nlines of\ntext (%s).\n', 3, 'I think');
 c = evalc('mp_printf(''Hello %s!\n\n'', ''mp_printf'');');
+fname_got = mp.logger.manager('path');
 mp.logger.manager('clear', fname);
+t_str_match(fname_got, fname, [t 'log file path']);
 t_file_match(fname, redir_printf_fname, [t 'mp_printf - file w/expected content'], {}, true);
 t_ok(isempty(c), [t 'mp_printf - no console output']);
 t_ok(isempty(mp.logger.manager('get')), [t 'mp.logger.manage(''clear'')']);
@@ -92,7 +98,9 @@ if have_feature('octave')
 else
     expected = sprintf('    2.7183\n\nThis is 3\nlines of\ntext (I think).\n\n');
 end
+fname_got = mp.logger.manager('path');
 mp.logger.manager('clear', fname);
+t_str_match(fname_got, fname, [t 'log file path']);
 t_file_match(fname, redir_disp_fname, [t 'mp_disp - file w/expected content'], {}, true);
 if ~t_str_match(c, expected, [t 'mp_disp - outputs to console']);
     fprintf('\ngot:\n"%s"\n', c);
@@ -104,9 +112,14 @@ fname = sprintf('redir-printf-%d.txt', fix(rand*1e8));
 mp.logger.manager('init', fname, 'w', 1);
 c = evalc(' mp_printf(''This is %d\nlines of\ntext (%s).\n'', 3, ''I think''); mp_printf(''Hello %s!\n\n'', ''mp_printf'');');
 expected = sprintf('This is 3\nlines of\ntext (I think).\nHello mp_printf!\n\n');
+fname_got = mp.logger.manager('path');
 mp.logger.manager('clear', fname);
+t_str_match(fname_got, fname, [t 'log file path']);
 t_file_match(fname, redir_printf_fname, [t 'mp_printf - file w/expected content'], {}, true);
 t_str_match(c, expected, [t 'mp_printf - outputs to console']);
 t_ok(isempty(mp.logger.manager('get')), [t 'mp.logger.manage(''clear'')']);
+
+fname_got = mp.logger.manager('path');
+t_ok(isempty(fname_got), [t 'log file path (empty)']);
 
 t_end;

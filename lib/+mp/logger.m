@@ -10,13 +10,17 @@ classdef logger < handle
 %
 % mp.logger Properties:
 %   * fid - file ID returned by ``fopen()``
+%   * log_file_path - path to log file
 %   * write_to_console - writes to both console **and** file, if true
 %
 % mp.logger Methods:
 %   * logger - constructor
 %   * init - initialize logger object (open log file)
+%   * set_file - open log file, after closing any already open
 %   * printf - prints to log
+%   * manage - handle actions forwarded from mp.logger.manager
 %   * finalize - finalize logger object (close log file)
+%   * manager - manage the logger object used by mp_printf and mp_disp
 %
 % See also mp_disp, mp_printf.
 
@@ -30,6 +34,7 @@ classdef logger < handle
 
     properties
         fid                 % file ID returned by ``fopen()``
+        log_file_path       % path to log file
         write_to_console    % writes to both console **and** file, if true
     end     %% properties
 
@@ -76,7 +81,7 @@ classdef logger < handle
         end
 
         function obj = set_file(obj, log_file_path, permission, write_to_console)
-            % Open log file.
+            % Open log file, after closing any already open.
             % ::
             %
             %   obj.set_file(log_file_path)
@@ -121,6 +126,7 @@ classdef logger < handle
             end
 
             obj.write_to_console = write_to_console;
+            obj.log_file_path = log_file_path;
         end
 
         function obj = printf(obj, varargin)
@@ -149,6 +155,33 @@ classdef logger < handle
             end
         end
 
+        function varargout = manage(obj, action, varargin)
+            % Handle actions forwarded from mp.logger.manager.
+            % ::
+            %
+            %   log_file_path = obj.manage('path');
+            %   [varargout{1:nargout}] = obj.manage('<action>', varargin);
+            %
+            % Inputs:
+            %   action (char array) : this class defines a ``'path'`` action
+            %       to return the log file path; subclasses can define others
+            %
+            % Outputs:
+            %   log_file_path (char array) : path to log file
+            %   <arbitrary> : defined by subclasses for other actions
+            %
+            % Currently defines a single ``'path'`` action to query the logger
+            % for the path of the open log file, which may be a relative
+            % path if that is what was used to create the object.
+
+            switch action
+            case 'path'
+                [varargout{1:nargout}] = obj.log_file_path;
+            otherwise
+                error('mp.logger.manage: action ''%s'' not implemented by %s', class(obj));
+            end
+        end
+
         function obj = finalize(obj, varargin)
             % Finalize logger object (close log file).
             % ::
@@ -169,12 +202,13 @@ classdef logger < handle
             if obj.fid > 2
                 fclose(obj.fid);
                 obj.fid = [];
+                obj.log_file_path = '';
             end
         end
     end     %% methods
 
     methods (Static)
-        function obj = manager(action, varargin)
+        function varargout = manager(action, varargin)
             % Manage the logger object used by mp_printf and mp_disp.
             % ::
             %
@@ -184,15 +218,20 @@ classdef logger < handle
             %   mp.logger.manager('init', log_file_path, permission);
             %   mp.logger.manager('init', log_file_path, permission, write_to_console);
             %   logger = mp.logger.manager('get');
-            %   logger = mp.logger.manager('clear');
+            %   log_file_path = mp.logger.manager('path');
+            %   mp.logger.manager('clear');
             %
-            % Input:
+            % Inputs:
             %   action (char array) : one of:
             %
             %       - ``'init'`` - initialize logger object, after clearing any
             %         existing one
             %       - ``'get'`` - retreive logger object
             %       - ``'clear'`` - clear logger object
+            %       - ``<other>`` - any other action, along with subsequent
+            %         input arguments is passed to the manage() method of the
+            %         logger object
+            %         
             %   logger (mp.logger) : an existing, ready-to-use logger object
             %   log_file_path (char array) : path to directory or file to which
             %       all output will be logged; if it points to an existing
@@ -201,12 +240,19 @@ classdef logger < handle
             %       ``fopen()``
             %   write_to_console (logical) : *(default = 0)* writes to both
             %       console **and** file, if true
+            %
+            % Output:
+            %   logger (mp.logger) : the mp.logger object for ``'get'``
+            %   <arbitrary> : for any action other than ``'get'``, ``'init'``,
+            %       and ``'clear'`` e.g. ``'path'``,  the logger object's
+            %       manage() method determines the number and content of output
+            %       arguments
 
             persistent logger;      %% logger object (or empty)
 
             switch lower(action)
             case 'get'
-                obj = logger;
+                [varargout{1:nargout}] = logger;
             case 'init'
                 mp.logger.manager('clear');
                 if nargin < 2
@@ -222,6 +268,12 @@ classdef logger < handle
                 if ~isempty(logger)
                     logger.finalize();
                     logger = [];
+                end
+            otherwise
+                if isempty(logger)
+                    [varargout{1:nargout}] = [];
+                else
+                    [varargout{1:nargout}] = logger.manage(action, varargin{:});
                 end
             end
         end
