@@ -1,5 +1,5 @@
 classdef logger < handle
-% mp.logger - Handles output typically sent to console.
+% mp.logger - Handles console output redirection for mp_disp and mp_printf.
 %
 % Example usage::
 %
@@ -17,8 +17,10 @@ classdef logger < handle
 %   * init - initialize logger object (open log file)
 %   * printf - prints to log
 %   * finalize - finalize logger object (close log file)
+%
+% See also mp_disp, mp_printf.
 
-%   MATPOWER
+%   MP-Test
 %   Copyright (c) 2026, Ray Zimmerman
 %   by Ray Zimmerman
 %
@@ -45,7 +47,7 @@ classdef logger < handle
             %   log_file_path (char array) : path to directory or file to which
             %       all output will be logged; if it points to an existing
             %       directory, ``'mp.logger_log.txt'`` will be appended
-            %   permission (char array) : *(default = ``'a'``)* permissions for
+            %   permission (char array) : *(default = 'a')* permissions for
             %       ``fopen()``
             %   write_to_console (logical) : *(default = 0)* writes to both
             %       console **and** file, if true
@@ -65,7 +67,7 @@ classdef logger < handle
             %   log_file_path (char array) : path to directory or file to which
             %       all output will be logged; if it points to an existing
             %       directory, ``'mp.logger_log.txt'`` will be appended
-            %   permission (char array) : *(default = ``'a'``)* permissions for
+            %   permission (char array) : *(default = 'a')* permissions for
             %       ``fopen()``
             %   write_to_console (logical) : *(default = 0)* writes to both
             %       console **and** file, if true
@@ -85,7 +87,7 @@ classdef logger < handle
             %   log_file_path (char array) : path to directory or file to which
             %       all output will be logged; if it points to an existing
             %       directory, ``'mp.logger_log.txt'`` will be appended
-            %   permission (char array) : *(default = ``'a'``)* permissions for
+            %   permission (char array) : *(default = 'a')* permissions for
             %       ``fopen()``
             %   write_to_console (logical) : *(default = 0)* writes to both
             %       console **and** file, if true
@@ -159,7 +161,7 @@ classdef logger < handle
             %   log_file_path (char array) : path to directory or file to which
             %       all output will be logged; if it points to an existing
             %       directory, ``'mp.logger_log.txt'`` will be appended
-            %   permission (char array) : *(default = ``'a'``)* permissions for
+            %   permission (char array) : *(default = 'a')* permissions for
             %       ``fopen()``
             %   write_to_console (logical) : *(default = 0)* writes to both
             %       console **and** file, if true
@@ -173,7 +175,7 @@ classdef logger < handle
 
     methods (Static)
         function obj = manager(action, varargin)
-            % Manage the logger object used by mp_printf() and mp_disp().
+            % Manage the logger object used by mp_printf and mp_disp.
             % ::
             %
             %   mp.logger.manager('init');
@@ -195,7 +197,7 @@ classdef logger < handle
             %   log_file_path (char array) : path to directory or file to which
             %       all output will be logged; if it points to an existing
             %       directory, ``'mp.logger_log.txt'`` will be appended
-            %   permission (char array) : *(default = ``'a'``)* permissions for
+            %   permission (char array) : *(default = 'a')* permissions for
             %       ``fopen()``
             %   write_to_console (logical) : *(default = 0)* writes to both
             %       console **and** file, if true

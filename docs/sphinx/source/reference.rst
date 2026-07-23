@@ -21,8 +21,8 @@ Use these functions in implementing your own tests.
    functions/t_str_match
 
 
-Other Functions
----------------
+Other Classes/Functions
+-----------------------
 
 Use these functions to test for availability and version information for
 optional functionality and to check the version of the installed MP-Test.
@@ -32,6 +32,9 @@ optional functionality and to check the version of the installed MP-Test.
    functions/debug_assert
    functions/have_feature
    functions/mptestver
+   functions/mp_disp
+   functions/mp_printf
+   classes/mp/logger
    functions/toggle_debug_mode
 
 
@@ -45,6 +48,7 @@ These functions test that MP-Test is installed and functioning as expected.
    functions/test_mptest
    functions/t_debug_assert
    functions/t_have_feature
+   functions/t_mp_logger
    functions/t_test_fcns
 
 

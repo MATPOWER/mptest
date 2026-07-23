@@ -45,9 +45,11 @@ of MATLAB or Octave, including setting up your MATLAB/Octave path.
 
         >> test_mptest
         t_test_fcns.......ok
+        t_debug_assert....ok
         t_have_feature....ok
-        All tests successful (29 of 29)
-        Elapsed time 0.18 seconds.
+        t_mp_logger.......ok
+        All tests successful (51 of 51)
+        Elapsed time 0.20 seconds.
 
 
 Usage

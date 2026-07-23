@@ -1,5 +1,5 @@
 function t_mp_logger(quiet)
-% t_mp_logger - Test mp.logger class and mp_disp() and mp_printf() functions.
+% t_mp_logger - Test mp.logger class and mp_disp and mp_printf functions.
 % ::
 %
 %   t_mp_logger
