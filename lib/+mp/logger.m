@@ -141,7 +141,11 @@ classdef logger < handle
                 error('mp.logger.printf: nothing to print');
             elseif ischar(varargin{1}) || varargin{1} == 1 || varargin{1} == 2
                 if obj.fid > 0      %% print to log file
-                    fprintf(obj.fid, varargin{:});
+                    if ischar(varargin{1})
+                        fprintf(obj.fid, varargin{:});
+                    else    %% use our fid, instead of 1 or 2
+                        fprintf(obj.fid, varargin{2:end});
+                    end
                     if obj.write_to_console
                         fprintf(varargin{:});
                     end
