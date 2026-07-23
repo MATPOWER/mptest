@@ -28,7 +28,7 @@ function t_begin(num_of_tests, quiet)
 % See also t_end, t_ok, t_is, t_str_match, t_file_match, t_skip, t_run_tests.
 
 %   MP-Test
-%   Copyright (c) 2004-2024, Power Systems Engineering Research Center (PSERC)
+%   Copyright (c) 2004-2026, Power Systems Engineering Research Center (PSERC)
 %   by Ray Zimmerman, PSERC Cornell
 %
 %   This file is part of MP-Test.
@@ -56,5 +56,5 @@ t_skip_cnt = 0;
 t_clock = tic;
 
 if ~t_quiet
-    fprintf('1..%d\n', num_of_tests);
+    mp_printf('1..%d\n', num_of_tests);
 end

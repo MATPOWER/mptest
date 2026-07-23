@@ -33,7 +33,7 @@ function ok = t_ok(cond, msg)
 % See also t_is, t_file_match, t_str_match, t_skip, t_begin, t_end, t_run_tests.
 
 %   MP-Test
-%   Copyright (c) 2004-2024, Power Systems Engineering Research Center (PSERC)
+%   Copyright (c) 2004-2026, Power Systems Engineering Research Center (PSERC)
 %   by Ray Zimmerman, PSERC Cornell
 %
 %   This file is part of MP-Test.
@@ -55,11 +55,11 @@ if cond
 else
     t_not_ok_cnt = t_not_ok_cnt + 1;
     if ~t_quiet
-        fprintf('not ');
+        mp_printf('not ');
     end
 end
 if ~t_quiet
-    fprintf('ok %d%s\n', t_counter, msg);
+    mp_printf('ok %d%s\n', t_counter, msg);
 end
 t_counter = t_counter + 1;
 if nargout

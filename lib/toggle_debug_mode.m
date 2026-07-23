@@ -16,7 +16,7 @@ function toggle_debug_mode(on_off, quiet)
 %
 % See also debug_assert.
 
-%   Copyright (c) 2024-2025, Ray Zimmerman
+%   Copyright (c) 2024-2026, Ray Zimmerman
 
 global DEBUG_MODE
 if nargin && ~isempty(on_off)
@@ -32,8 +32,8 @@ else
 end
 if nargin < 2 || ~quiet
     if DEBUG_MODE
-        fprintf('DEBUG_MODE is ON\n');
+        mp_printf('DEBUG_MODE is ON\n');
     else
-        fprintf('DEBUG_MODE is OFF\n');
+        mp_printf('DEBUG_MODE is OFF\n');
     end
 end

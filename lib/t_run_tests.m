@@ -28,7 +28,7 @@ function all_ok_ = t_run_tests(test_names, verbose)
 % See also t_begin, t_end.
 
 %   MP-Test
-%   Copyright (c) 2004-2024, Power Systems Engineering Research Center (PSERC)
+%   Copyright (c) 2004-2026, Power Systems Engineering Research Center (PSERC)
 %   by Ray Zimmerman, PSERC Cornell
 %
 %   This file is part of MP-Test.
@@ -64,11 +64,10 @@ skip_cnt = 0;
 t0 = tic;
 for k = 1:length(test_names)
     if verbose
-        fprintf('\n----------  %s  ----------\n', test_names{k});
+        mp_printf('\n----------  %s  ----------\n', test_names{k});
     else
         pad = maxlen + 4 - length(test_names{k});
-        fprintf('%s', test_names{k});
-        for m = 1:pad, fprintf('.'); end
+        mp_printf('%s%s', test_names{k}, repmat('.', [1 pad]));
     end
     feval( test_names{k}, ~verbose );
     
@@ -80,25 +79,25 @@ for k = 1:length(test_names)
 end
 
 if verbose
-    fprintf('\n\n----------  Summary  ----------\n');
+    mp_printf('\n\n----------  Summary  ----------\n');
 end
 if counter == num_of_tests && counter == ok_cnt + skip_cnt && not_ok_cnt == 0
     all_ok = 1;
     if skip_cnt
-        fprintf('All tests successful (%d passed, %d skipped of %d)', ...
+        mp_printf('All tests successful (%d passed, %d skipped of %d)', ...
             ok_cnt, skip_cnt, num_of_tests);
     else
-        fprintf('All tests successful (%d of %d)', ok_cnt, num_of_tests);
+        mp_printf('All tests successful (%d of %d)', ok_cnt, num_of_tests);
     end
 else
     all_ok = 0;
-    fprintf('Ran %d of %d tests: %d passed, %d failed', ...
+    mp_printf('Ran %d of %d tests: %d passed, %d failed', ...
         counter, num_of_tests, ok_cnt, not_ok_cnt);
     if skip_cnt
-        fprintf(', %d skipped', skip_cnt);
+        mp_printf(', %d skipped', skip_cnt);
     end
 end
-fprintf('\nElapsed time %.2f seconds.\n', toc(t0));
+mp_printf('\nElapsed time %.2f seconds.\n', toc(t0));
 
 if nargout
     all_ok_ = all_ok;   %% copy to optional output arg

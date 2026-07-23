@@ -26,7 +26,7 @@ function t_skip(cnt, msg)
 % See also t_ok, t_is, t_file_match, t_str_match, t_begin, t_end, t_run_tests.
 
 %   MP-Test
-%   Copyright (c) 2004-2024, Power Systems Engineering Research Center (PSERC)
+%   Copyright (c) 2004-2026, Power Systems Engineering Research Center (PSERC)
 %   by Ray Zimmerman, PSERC Cornell
 %
 %   This file is part of MP-Test.
@@ -46,9 +46,9 @@ end
 t_skip_cnt = t_skip_cnt + cnt;
 if ~t_quiet
     if cnt == 1
-        fprintf('skipped %d%s\n', t_counter, msg);
+        mp_printf('skipped %d%s\n', t_counter, msg);
     else
-        fprintf('skipped %d..%d%s\n', t_counter, t_counter+cnt-1, msg);
+        mp_printf('skipped %d..%d%s\n', t_counter, t_counter+cnt-1, msg);
     end
 end
 t_counter = t_counter + cnt;

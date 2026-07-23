@@ -20,7 +20,7 @@ function t_end
 % See also t_begin, t_ok, t_is, t_str_match, t_file_match, t_skip, t_run_tests.
 
 %   MP-Test
-%   Copyright (c) 2004-2024, Power Systems Engineering Research Center (PSERC)
+%   Copyright (c) 2004-2026, Power Systems Engineering Research Center (PSERC)
 %   by Ray Zimmerman, PSERC Cornell
 %
 %   This file is part of MP-Test.
@@ -47,33 +47,33 @@ end
 
 if t_quiet
     if all_ok
-        fprintf('ok');
+        mp_printf('ok');
         if t_skip_cnt
-            fprintf(' (%d of %d skipped)', t_skip_cnt, t_num_of_tests);
+            mp_printf(' (%d of %d skipped)', t_skip_cnt, t_num_of_tests);
         end
     else
-        fprintf('not ok\n');
-        fprintf('\t#####  Ran %d of %d tests: %d passed, %d failed', ...
+        mp_printf('not ok\n');
+        mp_printf('\t#####  Ran %d of %d tests: %d passed, %d failed', ...
             t_counter, t_num_of_tests, t_ok_cnt, t_not_ok_cnt);
         if t_skip_cnt
-            fprintf(', %d skipped', t_skip_cnt);
+            mp_printf(', %d skipped', t_skip_cnt);
         end
     end
-    fprintf('\n');
+    mp_printf('\n');
 else
     if all_ok
         if t_skip_cnt
-            fprintf('All tests successful (%d passed, %d skipped of %d)', ...
+            mp_printf('All tests successful (%d passed, %d skipped of %d)', ...
                 t_ok_cnt, t_skip_cnt, t_num_of_tests);
         else
-            fprintf('All tests successful (%d of %d)', t_ok_cnt, t_num_of_tests);
+            mp_printf('All tests successful (%d of %d)', t_ok_cnt, t_num_of_tests);
         end
     else
-        fprintf('Ran %d of %d tests: %d passed, %d failed', ...
+        mp_printf('Ran %d of %d tests: %d passed, %d failed', ...
             t_counter, t_num_of_tests, t_ok_cnt, t_not_ok_cnt);
         if t_skip_cnt
-            fprintf(', %d skipped', t_skip_cnt);
+            mp_printf(', %d skipped', t_skip_cnt);
         end
     end
-    fprintf('\nElapsed time %.2f seconds.\n', toc(t_clock));
+    mp_printf('\nElapsed time %.2f seconds.\n', toc(t_clock));
 end

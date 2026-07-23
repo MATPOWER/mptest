@@ -6,6 +6,8 @@ since 8.1
 ---------
 
 #### 7/23/26
+  - Use recently added `mp_printf()` in place of `fprintf()` everywhere to
+    allow redirecting of console output.
   - Add `mp.logger` class, and `mp_printf()` and `mp_disp()` functions
     which can be used as drop-in replacements for `fprintf()` and `disp()`.
     By default they behave identically, but can use an `mp.logger` object to
