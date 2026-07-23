@@ -273,6 +273,35 @@ particular function.
   (all char arrays). Calling `mptestver` without assigning the return value
   prints the version and release date of the current installation of MP-Test.
 
+- __mp.disp__ — drop-in replacement for `disp()`
+  ```
+  mp_disp(obj)
+  ```
+  Optionally redirects the output of `disp()` to a file via an `mp.logger`
+  object, or elsewhere via a custom `mp.logger` subclass.
+
+- __mp.printf__ — drop-in replacement for `fprintf()`
+  ```
+  mp_printf(format_str, arg1, ...)
+  mp_printf(fid, format_str, arg1, ...)
+  ```
+  Optionally redirects the output of `fprintf()` to a file via an `mp.logger`
+  object, or elsewhere via a custom `mp.logger` subclass. If the first
+  argument is a file ID, it does not redirect anything.
+
+- __mp.logger_manager__ — manage redirection for `mp_disp()` and `mp_printf()`
+  ```
+  mp.logger.manager('init', 'path/to/my/log-file.txt')
+  mp_disp(obj)
+  mp_printf(format_str, arg1, ...)
+  mp.logger.manager('init', 'different-log-file.txt')
+  mp_disp(obj)
+  mp_printf(format_str, arg1, ...)
+  mp.logger.manager('clear')
+  ```
+  Used to manage the `mp.logger` object that handles any output redirection
+  for `mp_disp()` and `mp_printf()`.
+
 
 #### Private Functions
 

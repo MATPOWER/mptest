@@ -35,6 +35,7 @@ tests = {};
 tests{end+1} = 't_test_fcns';
 tests{end+1} = 't_debug_assert';
 tests{end+1} = 't_have_feature';
+tests{end+1} = 't_mp_logger';
 
 %% run the tests
 all_ok = t_run_tests( tests, verbose );
