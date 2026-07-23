@@ -12,6 +12,7 @@ classdef logger < handle
 %   * fid - file ID returned by ``fopen()``
 %   * log_file_path - path to log file
 %   * write_to_console - writes to both console **and** file, if true
+%   * manual_flush - true by default on Octave, requiring fflush()
 %
 % mp.logger Methods:
 %   * logger - constructor
@@ -36,6 +37,7 @@ classdef logger < handle
         fid                 % file ID returned by ``fopen()``
         log_file_path       % path to log file
         write_to_console    % writes to both console **and** file, if true
+        manual_flush=false; % true by default on Octave, requiring fflush()
     end     %% properties
 
     methods
@@ -77,6 +79,9 @@ classdef logger < handle
             %   write_to_console (logical) : *(default = 0)* writes to both
             %       console **and** file, if true
 
+            if have_feature('octave')
+                obj.manual_flush = true;
+            end
             obj.set_file(varargin{:});
         end
 
@@ -145,6 +150,9 @@ classdef logger < handle
                         fprintf(obj.fid, varargin{:});
                     else    %% use our fid, instead of 1 or 2
                         fprintf(obj.fid, varargin{2:end});
+                    end
+                    if obj.manual_flush
+                        fflush(obj.fid);
                     end
                     if obj.write_to_console
                         fprintf(varargin{:});
