@@ -5,7 +5,7 @@ Change history for MP-Test
 since 8.1
 ---------
 
-#### 7/23/26
+#### 7/30/26
   - Use recently added `mp_printf()` in place of `fprintf()` everywhere to
     allow redirecting of console output.
   - Add `mp.logger` class, and `mp_printf()` and `mp_disp()` functions

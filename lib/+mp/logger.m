@@ -104,16 +104,16 @@ classdef logger < handle
 
             %% set default inputs
             default_log_file_name = 'mp.logger_log.txt';
-            if nargin < 4
+            if nargin < 4 || isempty(write_to_console)
                 write_to_console = false;
-                if nargin < 3
-                    permission = 'a';
-                end
             end
-            if nargin < 2 || isempty(log_file_path)
-                log_file_path = '.';
+            if nargin < 3 || isempty(permission)
+                permission = 'a';
             end
-            if exist(log_file_path, 'dir')
+            if nargin < 2
+                log_file_path = '';
+            end
+            if isempty(log_file_path) || exist(log_file_path, 'dir')
                 log_file_path = fullfile(log_file_path, default_log_file_name);
             end
 
@@ -231,6 +231,10 @@ classdef logger < handle
             %   mp.logger.manager('init', log_file_path, permission, write_to_console);
             %   logger = mp.logger.manager('get');
             %   log_file_path = mp.logger.manager('path');
+            %   TorF = mp.logger.manager('write_to_console');
+            %   TorF = mp.logger.manager('active');
+            %   mp.logger.manager('pause');
+            %   mp.logger.manager('resume');
             %   mp.logger.manager('clear');
             %
             % Inputs:
@@ -238,8 +242,13 @@ classdef logger < handle
             %
             %       - ``'init'`` - initialize logger object, after clearing any
             %         existing one
+            %       - ``'active'`` - return true if a logger is active
             %       - ``'get'`` - retreive logger object
             %       - ``'clear'`` - clear logger object
+            %       - ``'write_to_console'`` - return true if logger writes
+            %         to console in addition to logging to file
+            %       - ``'pause'`` - pause (temporarily disable) logger
+            %       - ``'resume'`` - resume (re-enable) paused logger
             %       - ``<other>`` - any other action, along with subsequent
             %         input arguments is passed to the manage() method of the
             %         logger object
@@ -260,9 +269,12 @@ classdef logger < handle
             %       manage() method determines the number and content of output
             %       arguments
 
-            persistent logger;      %% logger object (or empty)
+            persistent logger;          %% logger object (or empty)
+            persistent logger_paused;   %% inactive (paused) logger object (or empty)
 
             switch lower(action)
+            case 'active'
+                [varargout{1:nargout}] = ~isempty(logger);
             case 'get'
                 [varargout{1:nargout}] = logger;
             case 'init'
@@ -280,6 +292,32 @@ classdef logger < handle
                 if ~isempty(logger)
                     logger.finalize();
                     logger = [];
+                end
+                if ~isempty(logger_paused)
+                    logger_paused.finalize();
+                    logger_paused = [];
+                end
+            case 'write_to_console'
+                if ~isempty(logger)
+                    if length(varargin) > 0
+                        logger.write_to_console = varargin{1} ~= 0;
+                    else
+                        [varargout{1:nargout}] = logger.write_to_console;
+                    end
+                else
+                    if length(varargin) == 0
+                        [varargout{1:nargout}] = true;
+                    end
+                end
+            case 'pause'
+                if ~isempty(logger) && isempty(logger_paused)
+                    logger_paused = logger;
+                    logger = [];
+                end
+            case 'resume'
+                if ~isempty(logger_paused) && isempty(logger)
+                    logger = logger_paused;
+                    logger_paused = [];
                 end
             otherwise
                 if isempty(logger)
