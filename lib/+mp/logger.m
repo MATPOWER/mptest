@@ -19,6 +19,7 @@ classdef logger < handle
 %   * init - initialize logger object (open log file)
 %   * set_file - open log file, after closing any already open
 %   * printf - prints to log
+%   * warning - warnings to log
 %   * manage - handle actions forwarded from mp.logger.manager
 %   * finalize - finalize logger object (close log file)
 %   * manager - manage the logger object used by mp_printf and mp_disp
@@ -164,6 +165,52 @@ classdef logger < handle
                 fprintf(varargin{:});
             else
                 error('mp.logger.printf: first argument must be char array or file ID');
+            end
+        end
+
+        function obj = warning(obj, varargin)
+            % Warnings to log.
+            % ::
+            %
+            %   obj.warning(...)
+            %
+            % Inputs are identical to those of ``warning()``. Note, this
+            % function is only for throwing a warning, not querying or
+            % controlling warning status.
+
+            if nargin < 2
+                error('mp.logger.warning: no warning message');
+            else
+                if obj.fid > 0      %% warn to log file
+                    msg = sprintf(varargin{:});
+                    lastwarn(msg);
+                    st = dbstack('-completenames');
+                    if have_feature('matlab')
+                        fprintf(obj.fid, 'Warning: %s\n', msg);
+                        if length(st) > 0
+                            fprintf(obj.fid, '> ');
+                        end
+                        for k = 2:length(st)
+                            fprintf(obj.fid, 'In %s (line %d)\n', ...
+                                st(k).name, st(k).line);
+                        end
+                    else
+                        fprintf(obj.fid, 'warning: %s\n', msg);
+                        if length(st) > 0
+                            fprintf(obj.fid, 'warning: called from\n');
+                        end
+                        for k = 2:length(st)
+                            fprintf(obj.fid, '    %s at line %d column %d\n', ...
+                                st(k).name, st(k).line, st(k).column);
+                        end
+                        fprintf(obj.fid, '\n');
+                    end
+                    if obj.manual_flush
+                        fflush(obj.fid);
+                    end
+                else
+                    error('mp.logger.warning: log file not open');
+                end
             end
         end
 

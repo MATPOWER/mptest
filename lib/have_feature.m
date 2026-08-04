@@ -110,7 +110,7 @@ function rv = have_feature(tag, rtype)
 %     have_feature(cache, 'set_cache')
 
 %   MP-Test
-%   Copyright (c) 2004-2024, Power Systems Engineering Research Center (PSERC)
+%   Copyright (c) 2004-2026, Power Systems Engineering Research Center (PSERC)
 %   by Ray Zimmerman, PSERC Cornell
 %
 %   This file is part of MP-Test.
@@ -174,7 +174,7 @@ elseif action == 'D'        %% detect availability
         %% check for feature
         fcn = ['have_feature_' tag];
         if isempty(which(fcn))
-            warning('have_feature: unknown functionality ''%s''', tag);
+            mp_warning('have_feature: unknown functionality ''%s''', tag);
             vstr = 'unknown';
         else
             [TorF, vstr, rdate] = feval(fcn);

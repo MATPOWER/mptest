@@ -6,6 +6,10 @@ function mp_printf(varargin)
 %   mp_printf('A line of %s to be printed.\n', 'text');
 %   mp.logger.manager('clear');
 %
+% Optionally redirects the output of ``fprintf()`` to a file via an mp.logger
+% object, or elsewhere via a custom mp.logger subclass. If the first argument
+% is a file ID, it does not redirect anything.
+%
 % See also mp.logger.manager, mp.logger.
 
 %   MP-Test

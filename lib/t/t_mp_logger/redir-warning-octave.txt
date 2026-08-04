@@ -1,0 +1,10 @@
+warning: expected warning 1
+warning: called from
+    mp_warning at line 30 column 5
+    t_mp_logger at line 130 column 5
+
+warning: expected warning 2
+warning: called from
+    mp_warning at line 30 column 5
+    t_mp_logger at line 131 column 7
+

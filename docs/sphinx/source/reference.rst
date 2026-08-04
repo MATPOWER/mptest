@@ -34,6 +34,7 @@ optional functionality and to check the version of the installed MP-Test.
    functions/mptestver
    functions/mp_disp
    functions/mp_printf
+   functions/mp_warning
    classes/mp/logger
    functions/toggle_debug_mode
 

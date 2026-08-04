@@ -1,0 +1,6 @@
+Warning: expected warning 1
+> In mp_warning (line 30)
+In t_mp_logger (line 130)
+Warning: expected warning 2
+> In mp_warning (line 30)
+In t_mp_logger (line 131)

@@ -5,6 +5,15 @@ Change history for MP-Test
 since 8.1
 ---------
 
+#### 8/4/26
+  - Use recently added `mp_warning()` in place of `warning()` everywhere to
+    allow redirecting of console output.
+  - Add `mp_warning()` function which can be used as a drop-in replacement for
+    `warning()` for throwing warnings, but not for querying/controling warning
+    status. By default it behaves identically, but can use an `mp.logger` object
+    to redirect the output to a file, or elsewhere via a custom `mp.logger`
+    subclass.
+
 #### 7/30/26
   - Use recently added `mp_printf()` in place of `fprintf()` everywhere to
     allow redirecting of console output.

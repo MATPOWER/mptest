@@ -37,8 +37,8 @@ of MATLAB or Octave, including setting up your MATLAB/Octave path.
   t_debug_assert....ok
   t_have_feature....ok
   t_mp_logger.......ok
-  All tests successful (51 of 51)
-  Elapsed time 0.20 seconds.
+  All tests successful (96 of 96)
+  Elapsed time 0.23 seconds.
 ```
 
 Usage
@@ -289,6 +289,17 @@ particular function.
   Optionally redirects the output of `fprintf()` to a file via an `mp.logger`
   object, or elsewhere via a custom `mp.logger` subclass. If the first
   argument is a file ID, it does not redirect anything.
+
+- __mp_warning__ — drop-in replacement for `warning()`
+  ```
+  mp_warning(msg)
+  mp_warning(format_str, arg1, ...)
+  ```
+  Optionally redirects the output of `warning()` to a file via an `mp.logger`
+  object, or elsewhere via a custom `mp.logger` subclass. Inputs are identical
+  to those of `warning()`. Note that this function is only for throwing a
+  warning, not querying or controlling warning status, and the on/off state
+  of a warning has no effect on redirected output.
 
 - __mp.logger_manager__ — manage redirection for `mp_disp()` and `mp_printf()`
   ```

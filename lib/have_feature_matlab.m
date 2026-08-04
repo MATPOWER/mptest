@@ -7,7 +7,7 @@ function [TorF, vstr, rdate] = have_feature_matlab()
 %   See also have_feature.
 
 %   MP-Test
-%   Copyright (c) 2004-2024, Power Systems Engineering Research Center (PSERC)
+%   Copyright (c) 2004-2026, Power Systems Engineering Research Center (PSERC)
 %   by Ray Zimmerman, PSERC Cornell
 %
 %   This file is part of MP-Test.
@@ -16,7 +16,7 @@ function [TorF, vstr, rdate] = have_feature_matlab()
 
 v = ver('matlab');
 if length(v) > 1
-    warning('The built-in VER command is behaving strangely, probably as a result of installing a 3rd party toolbox in a directory named ''matlab'' on your path. Check each element of the output of ver(''matlab'') to find the offending toolbox, then move the toolbox to a more appropriately named directory.');
+    mp_warning('The built-in VER command is behaving strangely, probably as a result of installing a 3rd party toolbox in a directory named ''matlab'' on your path. Check each element of the output of ver(''matlab'') to find the offending toolbox, then move the toolbox to a more appropriately named directory.');
     v = v(1);
 end
 if ~isempty(v) && isfield(v, 'Version') && ~isempty(v.Version)
